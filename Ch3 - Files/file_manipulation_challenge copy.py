@@ -23,14 +23,35 @@ resultsFile.touch(exist_ok=True)
 
 '''Get list of all files in cwd; check for file names already in results.txt, and write file names to results.txt if they are not already present'''
 eLines = resultsFile.open().read().split('\n')
-fl = resultsPath.parent.iterdir()
+pathList = resultsPath.parent.iterdir()
 # print(dir(fl))
+totalSize = 0
 
-for f in fl:
-    with resultsFile.open(mode="a") as rf:
-        if f.name in eLines:
-            # print(f'{f.name} is in eLines')
-            continue
-        else:
-            # print(f'{f.name} is NOT in eLines')
+# for f in pathList:
+#     totalSize = int(totalSize + f.stat().st_size)
+#     # print(f"Total file size: {totalSize} bytes")
+
+# for f in pathList:
+#     totalSize = int(totalSize + f.stat().st_size)
+#     if f.is_file():
+#         with resultsFile.open(mode="a") as rf:
+#             if f.name in eLines:
+#                 continue
+#             else:
+#                 rf.write(f.name+"\n")
+
+
+# with resultsFile.open(mode="a") as rf:
+#     rf.write(
+#         f"_______________________________________\n Total Byte size is: {totalSize}kB")
+resultsFile.unlink()
+for f in pathList:
+    totalSize = int(totalSize + f.stat().st_size)
+    if f.is_file():
+        with resultsFile.open(mode="a") as rf:
             rf.write(f.name+"\n")
+
+
+with resultsFile.open(mode="a") as rf:
+    rf.write(
+        f"_______________________________________\n Total Byte size is: {totalSize}kB")
