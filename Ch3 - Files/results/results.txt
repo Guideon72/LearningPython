@@ -1,0 +1,13 @@
+testzip.7z
+challenge_solution.py
+files_finished.py
+files_start.py
+file_manipulation_challenge.py
+myFile.txt.bak
+myZipFile.zip
+newFile.txt
+ospathutils_finished.py
+ospathutils_start.py
+results
+shell_finished.py
+shell_start.py
